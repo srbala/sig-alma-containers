@@ -1,0 +1,21 @@
+#!/bin/bash
+# description: AlmaLinux base Docker image rootfs and Dockerfile generation
+#              script.
+# license: MIT.
+
+set -euo pipefail
+for type in micro minimal base init; 
+do 
+    docker manifest rm almalinux/8-$type:8.6
+    docker manifest rm almalinux/8-$type:8
+    docker manifest rm almalinux/8-$type:latest
+    docker manifest rm almalinux/8-$type:8.6-20220512
+    for tag in latest 8 8.6 8.6-20220512
+    do
+        docker manifest create almalinux/8-$type:$tag \
+            almalinux/amd64:8-$type-20220512 \
+            almalinux/arm64v8:8-$type-20220512 \
+            almalinux/ppc64le:8-$type-20220512;
+        docker manifest push almalinux/8-$type:$tag
+    done
+done

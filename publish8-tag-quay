@@ -19,3 +19,78 @@ do
         docker manifest push almalinux/8-$type:$tag
     done
 done
+
+
+    docker manifest rm almalinux/8-$type:8
+    docker manifest rm almalinux/8-$type:latest
+
+docker manifest rm quay.io/almalinux/almalinux:8
+docker manifest rm quay.io/almalinux/almalinux:latest
+
+docker manifest create quay.io/almalinux/almalinux:8 \
+            quay.io/almalinux/amd64:8.6-20220512 \
+            quay.io/almalinux/arm64v8:8.6-20220512 \
+            quay.io/almalinux/ppc64le:8.6-20220512;
+docker manifest push quay.io/almalinux/almalinux:8
+docker manifest create quay.io/almalinux/almalinux:latest \
+            quay.io/almalinux/amd64:8.6-20220512 \
+            quay.io/almalinux/arm64v8:8.6-20220512 \
+            quay.io/almalinux/ppc64le:8.6-20220512;
+docker manifest push quay.io/almalinux/almalinux:latest
+docker manifest create quay.io/almalinux/almalinux:8.6 \
+            quay.io/almalinux/amd64:8.6-20220512 \
+            quay.io/almalinux/arm64v8:8.6-20220512 \
+            quay.io/almalinux/ppc64le:8.6-20220512;
+docker manifest push quay.io/almalinux/almalinux:8.6
+docker manifest create quay.io/almalinux/almalinux:8.6-20220512 \
+            quay.io/almalinux/amd64:8.6-20220512 \
+            quay.io/almalinux/arm64v8:8.6-20220512 \
+            quay.io/almalinux/ppc64le:8.6-20220512;
+docker manifest push quay.io/almalinux/almalinux:8.6-20220512
+
+
+docker manifest rm quay.io/almalinux/almalinux:8-minimal
+docker manifest rm quay.io/almalinux/almalinux:minimal
+docker manifest create quay.io/almalinux/almalinux:8-minimal \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:8-minimal
+docker manifest create quay.io/almalinux/almalinux:minimal \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:minimal
+docker manifest create quay.io/almalinux/almalinux:8.6-minimal \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:8.6-minimal
+docker manifest create quay.io/almalinux/almalinux:8.6-minimal-20220512 \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:8.6-minimal-20220512
+
+docker manifest rm quay.io/almalinux/8-minimal:latest
+docker manifest rm quay.io/almalinux/8-minimal:8
+docker manifest create quay.io/almalinux/almalinux:8-minimal \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:8-minimal
+docker manifest create quay.io/almalinux/almalinux:minimal \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:minimal
+docker manifest create quay.io/almalinux/almalinux:8.6-minimal \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:8.6-minimal
+docker manifest create quay.io/almalinux/almalinux:8.6-minimal-20220512 \
+            quay.io/almalinux/amd64:8.6-minimal-20220512 \
+            quay.io/almalinux/arm64v8:8.6-minimal-20220512 \
+            quay.io/almalinux/ppc64le:8.6-minimal-20220512;
+docker manifest push quay.io/almalinux/almalinux:8.6-minimal-20220512

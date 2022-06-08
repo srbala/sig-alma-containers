@@ -1,0 +1,47 @@
+#!/bin/bash
+# description: AlmaLinux base Docker image rootfs and Dockerfile generation
+#              script.
+# license: MIT.
+
+set -euo pipefail
+# for type in default minimal base micro init; 
+# repo-prefix='almalinux/''
+repo_prefix='srbala/staging-alma8';
+repo_sep=':'
+# for type in micro minimal base init; 
+for type in micro; 
+do
+    for arch in amd64 arm64/v8 ppc64le;
+
+    do
+        march=$arch;
+        if [[ $arch == 'arm64/v8' ]]; then
+            march='aarch64';
+        fi    
+        if [[ $arch == 'amd64' ]]; then
+            march='x86_64';
+        fi   
+        #build_tag='almalinux/'$arch$repo_sep'8-'$type'-20220608';
+        build_tag=$repo_prefix$repo_sep'8-'$type'-20220608-'$march;
+#        docker build --squash --platform=linux/$arch -t $build_tag -f Dockerfile-$march-$type . 
+        docker build --squash --platform=linux/$arch -t $build_tag -f Dockerfile.$type . 
+        docker push $build_tag
+        #docker push srbala/staging-alma9:$arch-$type-20220608
+        #docker pull srbala/staging-alma9:$arch-$type-20220608
+        #./gen-rootfs srbala/staging-alma9:$arch-$type-20220608 $arch $type 
+    done
+done
+#        docker build --no-cache --platform=linux/$arch -t srbala/staging-alma9:$arch-$type20220608 -f Dockerfile.$type . 
+#        docker push srbala/staging-alma9:$arch-$type-20220608
+
+# for type in micro minimal default base init; 
+
+# do 
+#     # docker manifest rm srbala/staging-alma9:$type-20220608; \
+#     docker manifest create srbala/staging-alma9:$type-20220608 \
+#         almalinux/amd64:9-base-20220608 \
+#         almalinux/arm64v8:9-base-20220608 \
+#         almalinux/ppc64le:9-base-20220608 \
+#         almalinux/s390x:9-base-20220608; \
+#     docker manifest push srbala/staging-alma9:$type-20220608
+# done
